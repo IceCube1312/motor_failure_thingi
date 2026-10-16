@@ -20,4 +20,8 @@ clean:
 run: $(EXEC)
 	./$(EXEC)
 
-.PHONY: all clean run
+benchmark:
+	python3 run_benchmark.py
+
+.PHONY: all clean run benchmark
+
