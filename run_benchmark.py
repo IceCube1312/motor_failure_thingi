@@ -143,49 +143,7 @@ def generate_plots(df_stock, df_relaxed, fail_time=2.0):
     fig4.savefig('plot_4_motor_thrusts.png', dpi=300)
     print("      Saved: plot_4_motor_thrusts.png")
 
-    # -------------------------------------------------------------
-    # Master Summary (4-in-1 Combined Overview)
-    # -------------------------------------------------------------
-    fig, axs = plt.subplots(2, 2, figsize=(14, 10))
-    axs[0, 0].plot(df_stock['time'], df_stock['z'], label='Stock Controller (Crashes)', color=c_stock, linewidth=2.0)
-    axs[0, 0].plot(df_relaxed['time'], df_relaxed['z'], label='Relaxed Hover (Stabilized)', color=c_rel, linewidth=2.0)
-    axs[0, 0].axvline(x=fail_time, color=c_fail, linestyle='--', linewidth=1.5)
-    axs[0, 0].set_title('Altitude Response $z(t)$', fontweight='bold')
-    axs[0, 0].set_ylabel('Altitude [m]')
-    axs[0, 0].legend()
-    axs[0, 0].grid(True, linestyle=':', alpha=0.6)
 
-    axs[0, 1].plot(df_stock['time'], df_stock['tilt'], label='Stock Controller', color=c_stock, linewidth=2.0)
-    axs[0, 1].plot(df_relaxed['time'], df_relaxed['tilt'], label='Relaxed Hover', color=c_rel, linewidth=2.0)
-    axs[0, 1].axvline(x=fail_time, color=c_fail, linestyle='--', linewidth=1.5)
-    axs[0, 1].axhline(y=90.0, color='gray', linestyle=':')
-    axs[0, 1].set_title('Vehicle Tilt Angle $\\theta(t)$', fontweight='bold')
-    axs[0, 1].set_ylabel('Tilt Angle [deg]')
-    axs[0, 1].legend()
-    axs[0, 1].grid(True, linestyle=':', alpha=0.6)
-
-    axs[1, 0].plot(df_relaxed['time'], df_relaxed['p'], label='Roll $p$', color='#2ca02c')
-    axs[1, 0].plot(df_relaxed['time'], df_relaxed['q'], label='Pitch $q$', color='#9467bd')
-    axs[1, 0].plot(df_relaxed['time'], df_relaxed['r'], label='Yaw $r$ (Spin)', color=c_rel, linewidth=2.0)
-    axs[1, 0].axvline(x=fail_time, color=c_fail, linestyle='--', linewidth=1.5)
-    axs[1, 0].set_title('Body Angular Rates [Relaxed Hover]', fontweight='bold')
-    axs[1, 0].set_ylabel('Rate [rad/s]')
-    axs[1, 0].legend()
-    axs[1, 0].grid(True, linestyle=':', alpha=0.6)
-
-    axs[1, 1].plot(df_relaxed['time'], df_relaxed['f1'], label='$f_1$ (Dead)', color='black', linestyle=':')
-    axs[1, 1].plot(df_relaxed['time'], df_relaxed['f2'], label='$f_2$ (Left)', color='#1f77b4')
-    axs[1, 1].plot(df_relaxed['time'], df_relaxed['f3'], label='$f_3$ (Rear)', color='#ff7f0e')
-    axs[1, 1].plot(df_relaxed['time'], df_relaxed['f4'], label='$f_4$ (Right)', color='#2ca02c')
-    axs[1, 1].axvline(x=fail_time, color=c_fail, linestyle='--', linewidth=1.5)
-    axs[1, 1].set_title('Motor Thrust Allocation [Relaxed Hover]', fontweight='bold')
-    axs[1, 1].set_ylabel('Thrust [N]')
-    axs[1, 1].legend()
-    axs[1, 1].grid(True, linestyle=':', alpha=0.6)
-
-    plt.tight_layout()
-    fig.savefig('plot_summary.png', dpi=300)
-    print("      Saved: plot_summary.png")
 
 if __name__ == '__main__':
     run_c_simulation()
