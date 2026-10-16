@@ -15,7 +15,7 @@ $(EXEC): $(OBJ)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f src/*.o $(EXEC) flight_stock.csv flight_relaxed.csv benchmark_body_rates.png benchmark_altitude.png benchmark_summary.png
+	rm -f src/*.o $(EXEC) *.csv *.png
 
 run: $(EXEC)
 	./$(EXEC)
