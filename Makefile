@@ -21,7 +21,7 @@ run: $(EXEC)
 	./$(EXEC)
 
 benchmark:
-	python3 run_benchmark.py
+	python3 plot.py
 
 .PHONY: all clean run benchmark
 
